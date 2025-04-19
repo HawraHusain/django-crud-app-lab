@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Movie
+from django.urls import reverse
+
 # Create your views here.
 def home(request):
     return render(request, 'home.html')
@@ -24,4 +26,13 @@ def movie_create(request):
 class MovieCreate(CreateView):
     model = Movie
     fields = ['title', 'description', 'release_date', 'genre']
-    success_url = '/movies.html/'
+    def get_success_url(self):
+        return reverse('movies:movie_details', kwargs={'movie_id': self.object.id})
+
+class MovieUpdate(UpdateView):
+    model = Movie
+    fields = ['title', 'description', 'release_date', 'genre']
+
+class MovieDelete(DeleteView):
+    model = Movie
+    success_url = '/movies/'
