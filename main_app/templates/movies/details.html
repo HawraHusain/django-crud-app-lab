@@ -16,6 +16,10 @@
       <img src="{{ movie.image_url }}" alt="{{ movie.title }} Poster" class="usr-img">
     {% endif %}
     <p>{{ movie.description }}</p>
+    <div class="cat-actions">
+      <a href="{% url 'movies:movie_update' movie.id %}" class="btn warn">Edit</a>
+      <a href="{% url 'movies:movie_delete' movie.id %}" class="btn danger">Delete</a>
+    </div>
   </div>
 </section>
 {% endblock %}

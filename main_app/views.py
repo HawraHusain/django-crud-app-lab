@@ -32,7 +32,11 @@ class MovieCreate(CreateView):
 class MovieUpdate(UpdateView):
     model = Movie
     fields = ['title', 'description', 'release_date', 'genre']
+    def get_success_url(self):
+        return reverse('movies:movie_details', kwargs={'movie_id': self.object.id})
 
 class MovieDelete(DeleteView):
     model = Movie
     success_url = '/movies/'
+    def get_success_url(self):
+        return reverse('movies:movies')
