@@ -22,4 +22,40 @@
     </div>
   </div>
 </section>
+
+<!-- Existing cat-container above -->
+<div class="feedings-toy-container">
+  <section class="feedings">
+    <div class="subsection-title">
+      <h2>Characters</h2>
+      <img
+        src="{% static 'images/cat-cone.svg' %}"
+        alt="An ice cream cone cat"
+      />
+      <img src="{% static 'images/cat-onigiri.svg' %}" alt="A cat as onigiri" />
+      <img
+        src="{% static 'images/kitty-kabob.svg' %}"
+        alt="A kabob of kittens"
+      />
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Gender</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for Characters in movie.characters_set.all %}
+          <tr>
+            <td>{{Characters.name}}</td>
+            <td>{{Characters.get_gender_display}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+</div>
+
+
 {% endblock %}

@@ -21,7 +21,7 @@ class Movie(models.Model):
 class Characters(models.Model):
         name = models.CharField(max_length=100)
         gender = models.CharField(
-            max_length=1,
+            max_length=50,
             choices=Genders,
             default='M',
         )
