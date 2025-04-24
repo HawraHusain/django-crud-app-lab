@@ -16,16 +16,28 @@
   <body>
     <header>
       <div class="header-logo-container">
-        <a href="/">
-            <img src="{% static 'images/header-logo.jpeg' %}" alt="The Cat Collector Logo" />
-        </a>
+        <img src="{% static 'css/images/icon.png' %}" alt="The Movie Collector Logo" />
+          <h1>The Movie Collector</h1>
       </div>
       <nav>
         <ul>
-            <li><a href="/">Home</a></li>  
+          {% if user.is_authenticated %}
             <li><a href="/movies">All Movies</a></li>
             <li><a href="/movies/create">Add Movie</a></li>
-            <li><a href="/about">About</a></li>
+            <li>
+              <form id="logout-form" method="post" action="{% url 'movies:logout' %}">
+                {% csrf_token %}
+                <button type="submit">Log out</button>
+              </form>
+            </li>    
+            <li><a href="{% url 'movies:about' %}">About</a></li>
+      
+            {% else %}
+            <li><a href="{% url 'movies:movie_index' %}">Login</a></li>  
+            <li><a href="{% url 'movies:signup' %}">Sign Up</a></li>
+            <li><a href="{% url 'movies:about' %}">About</a></li>
+            {% endif %}
+
         </ul>
       </nav>
     </header>
